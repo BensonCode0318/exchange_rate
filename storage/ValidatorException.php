@@ -10,22 +10,12 @@ use Throwable;
  *
  * @package App\Exceptions
  */
-class AuthException extends BaseException
+class ValidatorException extends BaseException
 {
     private $errorConfig = [
-        '901' => [
+        '10001' => [
             'type'    => ExceptionConstant::FAILURE,
-            'message' => '驗證異常，請重新登入',
-            'sentry'  => false,
-        ],
-        '902' => [
-            'type'    => ExceptionConstant::FAILURE,
-            'message' => '驗證過期，請重新登入。',
-            'sentry'  => false,
-        ],
-        '903' => [
-            'type'    => ExceptionConstant::FAILURE,
-            'message' => '未帶Token，請重新登入',
+            'message' => 'Validator error',
             'sentry'  => false,
         ]
     ];
