@@ -71,6 +71,31 @@ class ExchangeRateServiceTest extends TestCase
     }
 
     /**
+     * 金額為0不需要轉換
+     */
+    public function testCalculateRateMoneyZero()
+    {
+        $inputData = [
+            'originRate' => ExchangeRateConstant::EXCHANGE_RATE_TYPE_TWD,
+            'targetRate' => ExchangeRateConstant::EXCHANGE_RATE_TYPE_TWD,
+            'money'      => 0,
+        ];
+
+        $mockRetrun = 0;
+        
+        // act
+        $this->exchangeRateServiceMock
+            ->shouldReceive('calculateRate')
+            ->once()
+            ->with($inputData)
+            ->andReturn($mockRetrun);
+            
+        $mockResult = $this->exchangeRateServiceMock->calculateRate($inputData);
+        $result     = $this->exchangeRateService->calculateRate($inputData);
+        $this->assertEquals($mockResult, $result);
+    }
+
+    /**
      * 驗證金額不能為負數
      */
     public function testCalculateRateMoneyNegativeFail()

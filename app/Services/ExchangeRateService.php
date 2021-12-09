@@ -25,8 +25,8 @@ class ExchangeRateService
      */
     public function calculateRate(array $inputData)
     {
-        // 來源與結果匯率相同 不需計算
-        if ($inputData['originRate'] === $inputData['targetRate']) {
+        // 來源與結果匯率相同或者金額為0 不需計算
+        if ($inputData['originRate'] === $inputData['targetRate'] || $inputData['money'] == 0) {
             return $inputData['money'];
         }
 
